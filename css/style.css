@@ -1,0 +1,320 @@
+/* 1. GLOBAL CORE STYLES & STICKY FOOTER LOGIC */
+/* keeping all the comments so that I can make my cheat sheet for midterm haha thank you :) */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 25px;
+    margin: 0px;
+    padding: 0px;
+    color: #222222;
+    background-color: #FFFFFF;
+    /* Flexbox on body helps push the footer down */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Global Container - flex: 1 ensures it fills the space above the footer */
+main {
+    flex: 1; 
+    width: 90%; 
+    margin: 30px auto; 
+}
+
+/* Unified list spacing to match Home and Networking */
+ul {
+    padding-left: 25px; 
+    margin: 15px 0px;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+/* 2. ACCESSIBILITY: SKIP LINK */
+.skip-link {
+    position: absolute;
+    top: -60px; 
+    left: 10px;
+    background: #FFCB05;
+    color: #00274C;
+    padding: 10px;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.skip-link:focus {
+    top: 10px; 
+}
+
+/* 3. HEADER & NAVIGATION */
+header {
+    position: relative;
+    background-color: #00274C; 
+    color: #FFCB05; 
+    text-align: center;
+    padding: 80px 15px 10px 15px; 
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 60px;
+    height: auto;
+}
+
+header h1 {
+    margin: 50px 0px 30px 0px;
+    font-size: 32px;
+}
+
+/* 3. HEADER & NAVIGATION UPDATES */
+nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0px; /* Reset padding for full-height background fill */
+    margin: 0px;
+    background-color: #FFCB05;
+}
+
+nav li {
+    flex: 1; /* Ensures each section of the nav bar is equal width */
+}
+
+/* Updated active state to provide the white background */
+nav li.active a {
+    background-color: #FFFFFF; /* White background behind selected text */
+    color: #00274C;            /* Michigan Blue text for contrast */
+    text-decoration: underline;
+    text-decoration-color: #00274C;
+    text-decoration-thickness: 3px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #00274C;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 15px 5px; /* Increased vertical padding for centered look */
+    display: block;
+    text-align: center;
+}
+
+/* Navigation Hover Effect */
+nav a:hover {
+    background-color: #00274C; /* Michigan Blue background */
+    color: #FFFFFF;            /* White text color */
+    text-decoration: underline;
+    text-decoration-color: #FFCB05; /* Maize underline */
+}
+
+/* Background color change when the link has the .active class */
+nav a.active {
+    text-decoration: underline;
+    text-decoration-color: #00274C;
+    text-decoration-thickness: 3px;
+    background-color: #FFFFFF; /* White background for the active page */
+}
+
+/* 4. GRID SYSTEM FOR IMAGES */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.hero h2, .hero p {
+    grid-column: 1 / span 3;
+}
+
+.hero img{
+    width: 100%;
+    height: 200px; 
+    object-fit: cover;
+    display: block;
+    border: none;
+}
+
+.hero-image img{
+    max-width: 100%;
+
+}
+
+/* 5. SECTION HEADINGS */
+h2 {
+    color: #00274C;
+    border-bottom: 3px solid #FFCB05;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: 40px
+}
+
+/* 6. ACCESSIBLE ACCORDION (Networking FAQ) */
+details {
+    background-color: #FFFFFF;
+    border: 1px solid #00274C;
+    margin-bottom: 10px;
+}
+
+summary {
+    padding: 15px;
+    font-weight: bold;
+    background-color: #00274C;
+    color: #FFCB05;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+summary::after {
+    content: '+';
+}
+
+details[open] summary::after {
+    content: '-';
+}
+
+details .content {
+    padding: 15px;
+    border-top: 2px solid #FFCB05;
+    background-color: #f8f9fa;
+}
+
+/* 7. FOOTER */
+footer {
+    background-color: #00274C;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 30px 15px;
+    text-decoration: underline;
+}
+
+footer a {
+    color: #FFCB05;
+    text-decoration: underline; 
+    font-weight: bold;
+}
+
+/* 8. DESKTOP VIEW (min-width) */
+@media screen and (min-width: 1024px) {
+
+    /* Expand Main Container for larger screens */
+    main {
+        width: 80%;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+
+    /* Update Header for Desktop */
+    header {
+        padding: 100px 30px 50px 30px;
+    }
+
+    header h1 {
+        font-size: 48px; /* Increased size for desktop space */
+    }
+
+    /* Update Navigation: More breathing room */
+    nav a {
+        font-size: 18px;
+        padding: 20px 10px;
+    }
+
+    /* Enhance the Hero Grid for wider viewports */
+    .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    /* Update the span to match the new 2-column grid */
+    .hero h2, .hero p {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* 404 Page Custom Design */
+/* Update your header to reduce the bottom space */
+header {
+    position: relative;
+    background-color: #00274C; 
+    color: #FFCB05; 
+    text-align: center;
+    padding: 80px 15px 10px 15px; /* Changed 30px to 10px to pull the blue up */
+}
+
+/* Update your error container to reduce the top space */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center to flex-start to pull content up */
+    text-align: center;
+    padding: 20px 20px 80px 20px; /* Reduced top padding from 80px to 20px */
+    background-color: #FFFFFF;
+    flex: 1;
+}
+
+/* Ensure the squirrel image doesn't have a large top margin */
+.error-image {
+    width: 250px;
+    height: auto;
+    margin-top: 0px; /* Set to 0 to remove extra gap */
+    margin-bottom: 10px; /* Reduced from 20px to tighten up the text below */
+}
+
+.error-title {
+    font-size: 48px;
+    color: #00274C; /* Michigan Blue */
+    margin: 10px 0px 15px -40px;
+    border-bottom: none; /* Removes the yellow line from general h2 style */
+}
+
+.error-text {
+    max-width: 500px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.error-button {
+    background-color: #00274C; /* Dark blue button */
+    color: #FFFFFF;
+    padding: 12px 30px;
+    border-radius: 8px; /* Rounded corners like the image */
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.error-button:hover {
+    background-color: #FFCB05; /* Switch to Maize on hover */
+    color: #00274C;
+}
+
+/* BACK TO TOP BUTTON STYLES */
+.top-btn {
+    position: fixed; /* Keep it in the same spot while scrolling */
+    bottom: 30px;
+    right: 30px;
+    z-index: 99; /* Stay on top of other content */
+    background-color: #00274C; /* Michigan Blue */
+    color: #FFCB05; /* Michigan Maize */
+    border: 2px solid #FFCB05;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none; /* Hidden by default; JS will show it on scroll */
+}
+
+.top-btn:hover {
+    background-color: #FFCB05;
+    color: #00274C;
+}
